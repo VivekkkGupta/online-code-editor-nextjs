@@ -3,11 +3,28 @@ import { FaShareAlt } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa";
 import Editortheme from './Editortheme';
 import { useAppContext } from '@/contexts/AppContext';
-import { LoaderCircle } from "lucide-react";
+import { useState } from "react";
 
 function CodeEditorHeader() {
 
     const { extension, handleExecuteCode, loading } = useAppContext()
+
+    const [shareStatus, setShareStatus] = useState('Share') // Add this state
+
+    const handleShare = async () => {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            setShareStatus('Copied!');
+
+            // Reset status after 2 seconds
+            setTimeout(() => {
+                setShareStatus('Share');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy URL:', err);
+            setShareStatus('Failed to copy');
+        }
+    }
 
     return (
         <div className='flex justify-between h-[4rem] w-full border-b'>
@@ -16,9 +33,12 @@ function CodeEditorHeader() {
             </div>
             <div className='flex items-center py-2 px-10 justify-end gap-2'>
                 <Editortheme />
-                <button className='flex items-center justify-center h-10 hover:bg-gray-800 px-4 py-2 transition duration-200 gap-2 border-1 cursor-pointer'>
+                <button
+                    className='flex items-center justify-center h-10 hover:bg-gray-800 px-4 py-2 transition duration-200 gap-2 border-1 cursor-pointer'
+                    onClick={handleShare}
+                >
                     <FaShareAlt />
-                    Share
+                    {shareStatus}
                 </button>
                 <button
                     onClick={handleExecuteCode}
