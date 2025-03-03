@@ -1,6 +1,14 @@
-import React from 'react'
+"use client";
+
+import { executeCode } from '@/api/api';
+import { useAppContext } from '@/contexts/AppContext';
+import React, { useState } from 'react'
 
 function Output() {
+    const {language, boilerPlate: SourceCode} = useAppContext()
+
+    const [output, setOutput] = useState(null)
+
     return (
         <div className='w-[36%]  flex flex-col h-full'>
             <div className='flex justify-between items-center w-full h-12 border-b border-l'>
@@ -14,9 +22,17 @@ function Output() {
                 </div>
             </div>
             <div className='w-full'>
-                Run the code to see the Output
-                <br />
-                Developed by Vivek Kumar Gupta
+                {
+                    output ? (
+                        output
+                    ) : (
+                        <p>
+                            Run the code to see the Output
+                            <br />
+                            Developed by Vivek Kumar Gupta
+                        </p>
+                    )
+                }
             </div>
         </div>
     )

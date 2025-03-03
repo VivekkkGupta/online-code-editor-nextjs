@@ -8,23 +8,34 @@ const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
 
 export const AppContextProvider = ({ children }) => {
-    const [language, setLanguage] = useState(() => {
-        // Load the language from localStorage or default to C++
-        return localStorage.getItem('selectedLanguage') || 'cpp';
-    });
-    const [boilerPlate, setBoilerPlate] = useState(LANGUAGES[language].helloWorld); // Set initial boilerplate based on language
-    const [extension, setExtension] = useState(LANGUAGES[language].extension);
 
+    const [language, setLanguage] = useState('cpp');
+    const [boilerPlate, setBoilerPlate] = useState(LANGUAGES[language].helloWorld);
+    const [extension, setExtension] = useState(LANGUAGES[language].extension);
     const [editorTheme, setEditorTheme] = useState('light');
 
-    // Update boilerPlate whenever the language changes
+
     useEffect(() => {
-        setBoilerPlate(LANGUAGES[language].helloWorld);
-        localStorage.setItem('selectedLanguage', language); // Save the selected language to localStorage
-    }, [language]);
+        if (typeof window !== 'undefined') {
+            const storedLanguage = localStorage.getItem('selectedLanguage');
+            if (storedLanguage) {
+                setLanguage(storedLanguage);
+                setBoilerPlate(LANGUAGES[language].helloWorld);
+                setExtension(LANGUAGES[language].extension);
+                // console.log( "Language stored: ",storedLanguage, "\nBoilerPlate : ", LANGUAGES[language].helloWorld,"\nExtension : ",LANGUAGES[language].extension)
+            }
+        }
+    }, []);
 
     const values = {
-        language, setLanguage, boilerPlate, editorTheme, setEditorTheme, extension, setExtension
+        language, 
+        setLanguage, 
+        boilerPlate, 
+        setBoilerPlate,
+        editorTheme, 
+        setEditorTheme, 
+        extension, 
+        setExtension
     }
 
     return (

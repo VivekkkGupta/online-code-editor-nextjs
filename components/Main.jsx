@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import Codeeditor from './Codeeditor'
+import Codeeditor from './CodeEditor'
 import Output from './Output'
 
 
