@@ -3,21 +3,11 @@ import { FaShareAlt } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa";
 import Editortheme from './Editortheme';
 import { useAppContext } from '@/contexts/AppContext';
-import { executeCode } from "@/api/api";
+import { LoaderCircle } from "lucide-react";
 
 function CodeEditorHeader() {
 
-    const { extension, language,boilerPlate:SourceCode} = useAppContext()
-    
-    const handleExecuteCode= async()=>{
-        console.log("click")
-        try {
-            const { response } = await executeCode(language,SourceCode);
-            console.log(response)
-        } catch (error) {
-            console.log(response)
-        }
-    }
+    const { extension, handleExecuteCode, loading } = useAppContext()
 
     return (
         <div className='flex justify-between  h-12 w-full border-b'>
@@ -31,10 +21,21 @@ function CodeEditorHeader() {
                     Share
                 </button>
                 <button
-                onClick={handleExecuteCode}
-                 className='ml-10 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 flex items-center justify-center gap-2 cursor-pointer'>
-                    <FaPlay />
-                    Run
+                    onClick={handleExecuteCode}
+                    className='w-25 h-10 ml-10 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200 flex items-center justify-center gap-2 cursor-pointer'>
+
+                    {
+                        loading ? (
+                            <div className="w-8 h-8 rounded-full border-4 animate-spin border-t-blue-700 border-blue-300">
+                            </div>
+                        ) : (
+                            <>
+                                <FaPlay />
+                                Run
+                            </>
+                        )
+                    }
+
                 </button>
             </div>
         </div>

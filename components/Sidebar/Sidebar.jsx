@@ -7,13 +7,15 @@ import { useAppContext } from '@/contexts/AppContext';
 import { LANGUAGES } from '@/constants/constants';
 
 function Sidebar() {
-    const { language, setLanguage, setBoilerPlate, setExtension } = useAppContext();
+    const { language, setLanguage, setUserCode, setExtension,setLanguageVersion } = useAppContext();
 
     const handleLanguageChange = (language) => {
         setLanguage(language);
-        setBoilerPlate(LANGUAGES[language].helloWorld);
-        setExtension(LANGUAGES[language].extension)
         localStorage.setItem('selectedLanguage', language);
+
+        setExtension(LANGUAGES[language].extension);
+        setUserCode(LANGUAGES[language].helloWorld);
+        setLanguageVersion(LANGUAGES[language].version);
     }
 
     return (

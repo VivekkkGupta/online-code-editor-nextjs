@@ -1,13 +1,15 @@
 "use client";
 
-import { executeCode } from '@/api/api';
 import { useAppContext } from '@/contexts/AppContext';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Output() {
-    const {language, boilerPlate: SourceCode} = useAppContext()
+    const {output,setOutput} = useAppContext()
 
-    const [output, setOutput] = useState(null)
+    useEffect(()=>{
+        // console.log(output)
+    },
+    [output])
 
     return (
         <div className='w-[36%]  flex flex-col h-full'>
@@ -16,7 +18,9 @@ function Output() {
                     Output
                 </div>
                 <div className='flex items-center px-10 justify-end gap-2'>
-                    <button className='flex items-center justify-center h-10 hover:bg-gray-800 px-4 transition duration-200 gap-2 border-1 cursor-pointer'>
+                    <button
+                    onClick={()=>setOutput(" ")}
+                    className='flex items-center justify-center h-10 hover:bg-gray-800 px-4 transition duration-200 gap-2 border-1 cursor-pointer'>
                         Clear
                     </button>
                 </div>
@@ -24,7 +28,9 @@ function Output() {
             <div className='w-full'>
                 {
                     output ? (
-                        output
+                        <pre>
+                            {output}
+                        </pre>
                     ) : (
                         <p>
                             Run the code to see the Output

@@ -1,6 +1,6 @@
 import React from 'react'
 import { APP_NAME } from "@/constants/constants";
-import ModeToggle from './mode-toggle';
+import ModeToggle from '../mode-toggle';
 
 function Header() {
     return (

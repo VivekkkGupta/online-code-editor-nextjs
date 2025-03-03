@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar/Sidebar'
 import Codeeditor from './CodeEditor'
-import Output from './Output'
+import Output from './Output/Output'
 
 
 function Main() {

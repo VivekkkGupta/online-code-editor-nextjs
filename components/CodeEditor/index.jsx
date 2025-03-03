@@ -2,7 +2,7 @@
 
 import React from 'react'
 import CodeEditorHeader from '@/components/CodeEditor/CodeEditorHeader';
-import CodeEditorInput from './CodeEditorInput';
+import CodeEditorInput from '@/components/CodeEditor/CodeEditorInput';
 
 function Codeeditor() {
 
