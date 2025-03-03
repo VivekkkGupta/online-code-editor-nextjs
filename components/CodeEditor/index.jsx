@@ -7,9 +7,9 @@ import CodeEditorInput from '@/components/CodeEditor/CodeEditorInput';
 function Codeeditor() {
 
     return (
-        <div className='flex flex-col w-full h-full'>
-            <CodeEditorHeader/>
-            <CodeEditorInput/>
+        <div className='flex flex-col w-[60vw] h-full border-r'>
+            <CodeEditorHeader />
+            <CodeEditorInput />
         </div>
     );
 }

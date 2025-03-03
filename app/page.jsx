@@ -1,7 +1,8 @@
 import Header from "@/components/Header/Header";
-import Main from "@/components/Main";
+import Main from "@/components/main";
 
-function Page() {
+
+function page() {
   return (
     <>
       <Header />
@@ -10,4 +11,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default page;

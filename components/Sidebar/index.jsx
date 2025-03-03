@@ -7,7 +7,7 @@ import { useAppContext } from '@/contexts/AppContext';
 import { LANGUAGES } from '@/constants/constants';
 
 function Sidebar() {
-    const { language, setLanguage, setUserCode, setExtension,setLanguageVersion } = useAppContext();
+    const { language, setLanguage, setUserCode, setExtension, setLanguageVersion } = useAppContext();
 
     const handleLanguageChange = (language) => {
         setLanguage(language);
@@ -19,7 +19,7 @@ function Sidebar() {
     }
 
     return (
-        <div className='w-[6%] flex flex-col items-center gap-4 py-10 border-r'>
+        <div className='w-[5vw] flex flex-col items-center gap-4 py-10 border-r'>
             <div className={`${language === 'cpp' ? "bg-white text-black" : ""} flex items-center justify-center w-[2rem] h-[2rem] border-1 cursor-pointer`} onClick={() => handleLanguageChange('cpp')}>
                 <SiCplusplus className='text-xl' />
             </div>

@@ -10,7 +10,7 @@ function CodeEditorHeader() {
     const { extension, handleExecuteCode, loading } = useAppContext()
 
     return (
-        <div className='flex justify-between  h-12 w-full border-b'>
+        <div className='flex justify-between h-[4rem] w-full border-b'>
             <div className='border-r flex px-5 items-center'>
                 main{extension}
             </div>

@@ -12,9 +12,9 @@ function CodeEditorInput() {
     };
 
     return (
-        <div className='w-full flex items-center justify-center'>
+        <div className='w-full h-[calc(100vh-9rem)] flex items-center justify-center'>
             <Editor
-                height="85vh"
+                height="100%"
                 theme={editorTheme}
                 language={language}
                 value={userCode}
