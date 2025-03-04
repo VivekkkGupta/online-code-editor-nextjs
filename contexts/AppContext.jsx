@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { LANGUAGES } from '../constants/constants';
-import { executeCode } from "@/api/api";
+import { executeCode } from "@/api/CodeRunner/api";
 
 const AppContext = createContext();
 
