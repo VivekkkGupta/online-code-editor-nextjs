@@ -34,6 +34,20 @@ export const AppContextProvider = ({ children }) => {
         }
     }
 
+    const handleCtrlS = async(event) => {
+        if (event.ctrlKey && event.key === 's') {
+            event.preventDefault();
+            await handleExecuteCode()
+        }
+    };
+
+    const handleCtrlEnter = async(event) => {
+        if (event.ctrlKey && event.key === 'Enter') {
+            event.preventDefault();
+            await handleExecuteCode()
+        }
+    };
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const storedLanguage = localStorage.getItem('selectedLanguage');
@@ -45,6 +59,17 @@ export const AppContextProvider = ({ children }) => {
                 // console.log( "Language stored: ",storedLanguage, "\nBoilerPlate : ", LANGUAGES[language].helloWorld,"\nExtension : ",LANGUAGES[language].extension)
             }
         }
+    }, []);
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleCtrlS);
+        document.addEventListener('keydown', handleCtrlEnter);
+
+        // Cleanup: remove event listeners when component unmounts
+        return () => {
+            document.removeEventListener('keydown', handleCtrlS);
+            document.removeEventListener('keydown', handleCtrlEnter);
+        };
     }, []);
 
     const values = {
@@ -61,7 +86,9 @@ export const AppContextProvider = ({ children }) => {
         languageVersion,
         setLanguageVersion,
         handleExecuteCode,
-        loading
+        loading,
+        handleCtrlS,handleCtrlEnter
+        
     }
 
     return (

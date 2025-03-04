@@ -42,7 +42,7 @@ function CodeEditorHeader() {
                 </button>
                 <button
                     onClick={handleExecuteCode}
-                    className='w-25 h-10 ml-10 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200 flex items-center justify-center gap-2 cursor-pointer'>
+                    className='h-10 ml-10 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200 flex items-center justify-center gap-2 cursor-pointer'>
 
                     {
                         loading ? (
@@ -52,6 +52,7 @@ function CodeEditorHeader() {
                             <>
                                 <FaPlay />
                                 Run
+                                (ctrl + s)
                             </>
                         )
                     }
