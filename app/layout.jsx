@@ -1,18 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { APP_NAME, APP_DESCRIPTION } from "../constants/constants";
 import { ThemeProvider } from "next-themes";
 import { AppContextProvider } from "@/contexts/AppContext";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "@/components/Header/Header";
 
 export const metadata = {
   title: `${APP_NAME}`,
@@ -22,9 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -32,6 +20,7 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange={false}
         >
           <AppContextProvider>
+            
             {children}
           </AppContextProvider>
         </ThemeProvider>

@@ -6,7 +6,7 @@ import OutputDisplay from './OutputDisplay';
 function Output() {
 
     return (
-        <div className='w-[40vw] flex flex-col h-full'>
+        <div className='flex flex-col h-full w-full'>
             <OutputHeader />
             <OutputDisplay />
         </div>

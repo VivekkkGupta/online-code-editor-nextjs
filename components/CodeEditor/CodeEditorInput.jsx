@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect } from 'react'
 import Editor from '@monaco-editor/react';
 import { useAppContext } from '@/contexts/AppContext';
 
 function CodeEditorInput() {
-    const { language, editorTheme, userCode, setUserCode,handleCtrlEnter,handleCtrlS } = useAppContext()
+    const { language, editorTheme, userCode, setUserCode } = useAppContext()
 
     const handleEditorChange = (newValue) => {
         setUserCode(newValue);

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon } from "lucide-react";
+import { Button } from "./ui/button";
 
 const ModeToggle = () => {
     const [mounted, setMounted] = useState(false);
@@ -17,10 +18,10 @@ const ModeToggle = () => {
         setTheme(theme === 'light' ? 'dark' : 'light');
     }
     return (
-        <button
-            className="flex items-center justify-center h-10 w-10 hover:bg-gray-400 transition duration-200 border-1 cursor-pointer"
-            onClick={(e) => handleThemeChange(e)}
+        <Button className={`cursor-pointer`} variant="outline" size="icon"
+        onClick={(e) => handleThemeChange(e)}
         >
+
             {
                 theme == "light" ? (
                     <SunIcon className="text-sm" />
@@ -28,7 +29,7 @@ const ModeToggle = () => {
                     <MoonIcon className="text-sm" />
                 )
             }
-        </button>
+        </Button>
     );
 };
 

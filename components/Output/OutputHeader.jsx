@@ -1,5 +1,6 @@
 import { useAppContext } from '@/contexts/AppContext'
 import React from 'react'
+import { Button } from '../ui/button'
 
 function OutputHeader() {
 
@@ -10,11 +11,13 @@ function OutputHeader() {
                 Output
             </div>
             <div className='flex items-center px-10 justify-end gap-2 '>
-                <button
+                <Button
                     onClick={() => setOutput(" ")}
-                    className='flex items-center justify-center h-10 hover:bg-gray-800 px-4 transition duration-200 gap-2 border-1 cursor-pointer'>
+                    className={`cursor-pointer`}
+                    variant={"outline"}
+                    >
                     Clear
-                </button>
+                </Button>
             </div>
         </div>
     )

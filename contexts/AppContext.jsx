@@ -18,7 +18,7 @@ export const AppContextProvider = ({ children }) => {
 
     const [loading,setLoading] = useState(false);
 
-    const [editorTheme, setEditorTheme] = useState('light');
+    const [editorTheme, setEditorTheme] = useState('vs');
 
     const handleExecuteCode = async()=>{
         // console.log("click")

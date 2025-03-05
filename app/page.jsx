@@ -7,7 +7,7 @@ function page() {
     <>
       <Header />
       <Main />
-      {/* <AI /> */}
+      <AI />
     </>
   );
 }
