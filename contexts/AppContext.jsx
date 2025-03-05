@@ -14,34 +14,35 @@ export const AppContextProvider = ({ children }) => {
     const [extension, setExtension] = useState(LANGUAGES[language].extension);
     const [userCode, setUserCode] = useState(LANGUAGES[language].helloWorld);
     const [languageVersion, setLanguageVersion] = useState(LANGUAGES[language].version);
-    const [output, setOutput] = useState(null);
-
-    const [loading,setLoading] = useState(false);
-
+    const [userInput, setUserInput] = useState('');
+    const [output, setOutput] = useState('');
+    const [loading, setLoading] = useState(false);
     const [editorTheme, setEditorTheme] = useState('vs');
 
-    const handleExecuteCode = async()=>{
+    const handleExecuteCode = async () => {
         // console.log("click")
         try {
             setLoading(true)
             setOutput("Loading...")
-            const response = await executeCode(language,userCode);
+            console.log(userCode)
+            console.log(userInput)
+            const response = await executeCode(language, userCode, userInput);
             setOutput(response.data.run.output);
             setLoading(false)
         } catch (error) {
             console.log(error)
-            setOutput("Error: "+ error)
+            setOutput("Error: " + error)
         }
     }
 
-    const handleCtrlS = async(event) => {
+    const handleCtrlS = async (event) => {
         if (event.ctrlKey && event.key === 's') {
             event.preventDefault();
             await handleExecuteCode()
         }
     };
 
-    const handleCtrlEnter = async(event) => {
+    const handleCtrlEnter = async (event) => {
         if (event.ctrlKey && event.key === 'Enter') {
             event.preventDefault();
             await handleExecuteCode()
@@ -73,13 +74,15 @@ export const AppContextProvider = ({ children }) => {
     }, []);
 
     const values = {
-        language, 
-        setLanguage, 
-        userCode, 
+        language,
+        setLanguage,
+        userCode,
         setUserCode,
-        editorTheme, 
-        setEditorTheme, 
-        extension, 
+        userInput,
+        setUserInput,
+        editorTheme,
+        setEditorTheme,
+        extension,
         setExtension,
         output,
         setOutput,
@@ -87,8 +90,8 @@ export const AppContextProvider = ({ children }) => {
         setLanguageVersion,
         handleExecuteCode,
         loading,
-        handleCtrlS,handleCtrlEnter
-        
+        handleCtrlS, handleCtrlEnter
+
     }
 
     return (

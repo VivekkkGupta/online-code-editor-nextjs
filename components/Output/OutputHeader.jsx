@@ -15,7 +15,7 @@ function OutputHeader() {
                     onClick={() => setOutput(" ")}
                     className={`cursor-pointer`}
                     variant={"outline"}
-                    >
+                >
                     Clear
                 </Button>
             </div>

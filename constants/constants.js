@@ -1,8 +1,13 @@
-export const APP_NAME = process.env.NEXT_APP_NAME || "AI Powered Code Editor Online";
+export const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY || "";
+export const OPENAI_MODEL =
+  process.env.NEXT_PUBLIC_OPENAI_MODEL || "gpt-4o-mini";
+
+export const APP_NAME =
+  process.env.NEXT_APP_NAME || "AI Powered Code Editor Online";
 export const APP_DESCRIPTION =
   process.env.NEXT_APP_DESCRIPTION ||
   "Online code editor and compiler for C++, Python, Javascript, Java";
-  
+
 export const LANGUAGES = {
   cpp: {
     name: "C++",
