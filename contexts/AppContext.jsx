@@ -19,13 +19,15 @@ export const AppContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [editorTheme, setEditorTheme] = useState('vs');
 
+    const handleCodeChange = (newValue) => {
+        setUserCode(newValue);
+    };
+
     const handleExecuteCode = async () => {
-        // console.log("click")
+        console.log(userCode)
         try {
             setLoading(true)
             setOutput("Loading...")
-            console.log(userCode)
-            console.log(userInput)
             const response = await executeCode(language, userCode, userInput);
             setOutput(response.data.run.output);
             setLoading(false)
@@ -57,7 +59,7 @@ export const AppContextProvider = ({ children }) => {
                 setExtension(LANGUAGES[storedLanguage].extension);
                 setUserCode(LANGUAGES[storedLanguage].helloWorld);
                 setLanguageVersion(LANGUAGES[storedLanguage].version);
-                // console.log( "Language stored: ",storedLanguage, "\nBoilerPlate : ", LANGUAGES[language].helloWorld,"\nExtension : ",LANGUAGES[language].extension)
+                // console.log( "Language stored: ",storedLanguage, "\nBoilerPlate : ", LANGUAGES[language].helloWorld,"\nExtension : ",LANGUAGES[language].extension)w
             }
         }
     }, []);
@@ -71,7 +73,7 @@ export const AppContextProvider = ({ children }) => {
             document.removeEventListener('keydown', handleCtrlS);
             document.removeEventListener('keydown', handleCtrlEnter);
         };
-    }, []);
+    }, [handleExecuteCode]);
 
     const values = {
         language,
@@ -90,8 +92,7 @@ export const AppContextProvider = ({ children }) => {
         setLanguageVersion,
         handleExecuteCode,
         loading,
-        handleCtrlS, handleCtrlEnter
-
+        handleCodeChange
     }
 
     return (

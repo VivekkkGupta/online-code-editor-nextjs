@@ -1,6 +1,7 @@
 import React from "react";
 import { APP_NAME } from "@/constants/constants";
-import ModeToggle from "../mode-toggle";
+import ModeToggle from "./mode-toggle";
+import UserLogin from "./UserLogin";
 
 function Header() {
   return (
@@ -11,7 +12,10 @@ function Header() {
             {APP_NAME}
           </h1>
         </div>
+        <div className="flex items-center gap-5">
           <ModeToggle />
+          {/* <UserLogin /> */}
+        </div>
       </div>
     </>
   );

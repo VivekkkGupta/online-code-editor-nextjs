@@ -3,7 +3,7 @@ export const OPENAI_MODEL =
   process.env.NEXT_PUBLIC_OPENAI_MODEL || "gpt-4o-mini";
 
 export const APP_NAME =
-  process.env.NEXT_APP_NAME || "AI Powered Code Editor Online";
+  process.env.NEXT_APP_NAME || "Codersz - AI Powered Code Editor Online";
 export const APP_DESCRIPTION =
   process.env.NEXT_APP_DESCRIPTION ||
   "Online code editor and compiler for C++, Python, Javascript, Java";

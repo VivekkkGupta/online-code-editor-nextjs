@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const ModeToggle = () => {
     const [mounted, setMounted] = useState(false);
@@ -19,7 +19,7 @@ const ModeToggle = () => {
     }
     return (
         <Button className={`cursor-pointer`} variant="outline" size="icon"
-        onClick={(e) => handleThemeChange(e)}
+            onClick={(e) => handleThemeChange(e)}
         >
 
             {
