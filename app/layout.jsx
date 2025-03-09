@@ -1,8 +1,8 @@
 import "./globals.css";
-import { APP_NAME, APP_DESCRIPTION } from "../constants/constants";
+import { APP_NAME, APP_DESCRIPTION } from "../lib/constants/constants";
 import { ThemeProvider } from "next-themes";
 import { AppContextProvider } from "@/contexts/AppContext";
-import {NextAuthProvider} from './providers'
+import { NextAuthProvider } from "./providers";
 
 export const metadata = {
   title: `${APP_NAME}`,
@@ -20,9 +20,7 @@ export default function RootLayout({ children }) {
             enableSystem={true}
             disableTransitionOnChange={false}
           >
-            <AppContextProvider>
-              {children}
-            </AppContextProvider>
+            <AppContextProvider>{children}</AppContextProvider>
           </ThemeProvider>
         </NextAuthProvider>
       </body>

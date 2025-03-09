@@ -1,4 +1,4 @@
-import { OPENAI_API_KEY, OPENAI_MODEL } from "@/constants/constants";
+import { OPENAI_API_KEY, OPENAI_MODEL } from "@/lib/constants/constants";
 import OpenAI from "openai";
 
 const openai = new OpenAI({

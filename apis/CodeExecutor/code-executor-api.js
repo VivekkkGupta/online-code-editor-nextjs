@@ -1,4 +1,4 @@
-import { LANGUAGES } from "@/constants/constants";
+import { LANGUAGES } from "@/lib/constants/constants";
 import axios from "axios";
 
 const API = axios.create({

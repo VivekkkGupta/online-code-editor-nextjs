@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { LANGUAGES } from '../constants/constants';
-import { executeCode } from "@/api/api";
+import { LANGUAGES } from '../lib/constants/constants';
+import { executeCode } from "@/apis/CodeExecutor/code-executor-api";
 
 const AppContext = createContext();
 

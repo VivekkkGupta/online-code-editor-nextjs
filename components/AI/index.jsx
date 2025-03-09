@@ -13,7 +13,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import generatePrompts from "@/api/OpenAI/open-ai-api-call";
+import generatePrompts from "@/apis/OpenAI/open-ai-api-call";
 import RenderMessage from "./RenderMessage";
 
 function AI() {

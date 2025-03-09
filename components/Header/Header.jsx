@@ -1,5 +1,5 @@
 import React from "react";
-import { APP_NAME } from "@/constants/constants";
+import { APP_NAME } from "@/lib/constants/constants";
 import ModeToggle from "./mode-toggle";
 import UserLogin from "./UserLogin";
 

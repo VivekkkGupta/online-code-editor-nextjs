@@ -4,7 +4,7 @@ import React from "react";
 import { SiCplusplus, SiPython, SiJavascript } from "react-icons/si";
 import { LiaJava } from "react-icons/lia";
 import { useAppContext } from "@/contexts/AppContext";
-import { LANGUAGES } from "@/constants/constants";
+import { LANGUAGES } from "@/lib/constants/constants";
 import { Button } from "@/components/ui/button";
 
 function Sidebar() {
