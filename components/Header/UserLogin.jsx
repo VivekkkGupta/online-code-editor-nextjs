@@ -1,29 +1,20 @@
+"use client";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Button } from "../ui/button";
 
-import React from 'react'
-import { Button } from '../ui/button';
-import { useSession, signIn, signOut } from "next-auth/react"
+export default function UserLogin() {
+    const { data: session } = useSession();
 
-function UserLogin() {
-    // const { data: session } = useSession()
-    const session = null;
     return (
-        <div>
-            {
-                session ? (
-                    <>
-                        Signed in as {session.user.email} <br />
-                        <button onClick={() => signOut()}>Sign out</button>
-                    </>
-                ) : (
-                    <Button variant={"default"} className={`cursor-pointer`}
-                        onClick={() => signIn()}
-                    >
-                        Login
-                    </Button>
-                )
-            }
-        </div>
-    )
+        <>
+            {session ? (
+                <>
+                    <span className="mr-4">{session?.user?.name}</span>
+                    <button onClick={() => signOut()} className="bg-red-500 px-4 py-2">Logout</button>
+                </>
+            ) : (
+                <Button onClick={() => signIn()} className={`cursor-pointer`}>Login</Button>
+            )}
+        </>
+    );
 }
-
-export default UserLogin
