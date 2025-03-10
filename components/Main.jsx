@@ -1,27 +1,32 @@
-import Sidebar from "./Sidebar";
 import Codeeditor from "./CodeEditor";
-import Output from "./Output";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import InputOutputSection from "./InputOutputSection";
+import LeftSidebarSection from "./LeftSidebarSection";
+import AI from "./AI";
+import AiSection from "./AI/AiSection";
 
 function Main() {
   return (
     <div
-      style={{ minHeight: `calc(100vh - 5rem)` }}
-      className="w-full flex h-full"
+      style={{ height: `calc(100vh - 5rem)` }}
+      className="w-full flex"
     >
-      <Sidebar />
-
+      <LeftSidebarSection />
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={60}>
+        <ResizablePanel defaultSize={50}>
           <Codeeditor />
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={40}>
-          <Output />
+        <ResizablePanel defaultSize={20}>
+          <InputOutputSection />
+        </ResizablePanel>
+        <ResizableHandle />
+        <ResizablePanel defaultSize={30}>
+          <AiSection />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

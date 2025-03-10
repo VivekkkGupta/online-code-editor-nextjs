@@ -10,15 +10,15 @@ function InputSection() {
 
     return (
         <div className="h-full w-full flex flex-col gap-1 pt-2">
-            <div className='flex justify-between items-center px-4'>
+            <div className='flex justify-between items-center px-4 py-2'>
                 <Label htmlFor="inputmessage">Input: </Label>
-                <Button
+                {/* <Button
                     variant={"ghost"}
                     className={`cursor-pointer`}
                     onClick={() => setUserInput(" ")}
                 >
                     Clear Input
-                </Button>
+                </Button> */}
             </div>
             <Textarea
                 id="inputmessage"

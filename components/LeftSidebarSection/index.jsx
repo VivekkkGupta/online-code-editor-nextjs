@@ -7,7 +7,7 @@ import { useAppContext } from "@/contexts/AppContext";
 import { LANGUAGES } from "@/lib/constants/constants";
 import { Button } from "@/components/ui/button";
 
-function Sidebar() {
+function LeftSidebarSection() {
   const {
     language,
     setLanguage,
@@ -65,4 +65,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default LeftSidebarSection;

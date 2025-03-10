@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-function Editortheme() {
+function EditorThemeChoice() {
   const { editorTheme, setEditorTheme } = useAppContext();
 
   const handleThemeChange = (value) => {
@@ -44,4 +44,4 @@ function Editortheme() {
   );
 }
 
-export default Editortheme;
+export default EditorThemeChoice;

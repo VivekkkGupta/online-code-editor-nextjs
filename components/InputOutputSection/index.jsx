@@ -1,16 +1,13 @@
 "use client";
 
-import OutputHeader from './OutputHeader';
 import InputSection from './InputSection';
 import OutputSection from './OutputSection';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '../ui/resizable';
 
-function Output() {
+function InputOutputSection() {
 
     return (
         <div className='flex flex-col h-full w-full'>
-            {/* <OutputHeader /> */}
-
             <ResizablePanelGroup direction="vertical">
                 <ResizablePanel defaultSize={50}>
                     <InputSection />
@@ -24,4 +21,4 @@ function Output() {
     )
 }
 
-export default Output
+export default InputOutputSection

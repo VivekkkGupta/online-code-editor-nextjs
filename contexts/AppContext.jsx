@@ -11,8 +11,8 @@ export const useAppContext = () => useContext(AppContext);
 export const AppContextProvider = ({ children }) => {
 
     const [language, setLanguage] = useState('cpp');
-    const [extension, setExtension] = useState(LANGUAGES[language].extension);
     const [userCode, setUserCode] = useState(LANGUAGES[language].helloWorld);
+    const [extension, setExtension] = useState(LANGUAGES[language].extension);
     const [languageVersion, setLanguageVersion] = useState(LANGUAGES[language].version);
     const [userInput, setUserInput] = useState('');
     const [output, setOutput] = useState('');

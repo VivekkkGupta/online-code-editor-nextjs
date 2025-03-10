@@ -1,14 +1,14 @@
 "use client";
-import Editortheme from "./Editortheme";
 import { useAppContext } from "@/contexts/AppContext";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, Play, Share2 } from "lucide-react";
+import EditorThemeChoice from "./EditorThemeChoice";
 
 function CodeEditorHeader() {
   const { extension, handleExecuteCode, loading } = useAppContext();
 
-  const [shareStatus, setShareStatus] = useState("Share"); // Add this state
+  const [shareStatus, setShareStatus] = useState("Share");
 
   const handleShare = async () => {
     try {
@@ -29,7 +29,7 @@ function CodeEditorHeader() {
     <div className="flex justify-between h-[4rem] w-full border-b">
       <div className="border-r flex px-5 items-center">main{extension}</div>
       <div className="flex items-center py-2 px-10 justify-end gap-2">
-        <Editortheme />
+        <EditorThemeChoice />
 
         <Button className={`cursor-pointer`} variant="outline" onClick={handleShare}>
             <Share2 className="" /> {shareStatus}

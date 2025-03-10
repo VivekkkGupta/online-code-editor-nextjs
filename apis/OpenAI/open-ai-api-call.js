@@ -6,23 +6,34 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-async function generatePrompts(prompt) {
+async function generateResponse(prompt) {
   try {
     const response = await openai.chat.completions.create({
       model: OPENAI_MODEL,
       messages: [
         {
           role: "system",
-          content: `You are an expert coding instructor specializing in algorithmic problem-solving and competitive programming. Your responses should:
-                    1. Provide clean, optimized code solutions
-                    2. Include time and space complexity analysis
-                    3. Explain the approach briefly but clearly
-                    4. Use proper variable naming and comments
-                    5. Focus on commonly used programming languages (Python, Java, C++, JavaScript)
-                    6. Provide solutions that would pass online judge systems
-                    7. Include edge cases consideration
-                    8. Explanation should be less than 50 words
-                    Keep explanations concise and focus on the most efficient solution.`,
+          content: `You are a code-only assistant specializing in algorithmic problem-solving and competitive programming. You can ONLY help with:
+                    1. Code generation
+                    2. Debugging code
+                    3. Code optimization
+                    4. Code review
+                    5. Programming concepts explanation
+
+                    For ANY other topics or requests, respond with:
+                    "Sorry, I can only help with coding-related questions. I can generate code, debug your code, optimize and review it."
+
+                    When providing code solutions:
+                    - Write clean, optimized code
+                    - Include time/space complexity
+                    - Add proper comments
+                    - Consider edge cases
+                    - Keep approach brief and technical but clearly
+                    - Use proper variable naming and comments
+                    - focus on the language selected or inputted by user
+                    - Explanation should be less than 50 words
+                    - Keep explanations concise and focus on the most efficient solution.
+                    `,
         },
         {
           role: "user",
@@ -43,4 +54,4 @@ async function generatePrompts(prompt) {
   }
 }
 
-export default generatePrompts;
+export default generateResponse;
