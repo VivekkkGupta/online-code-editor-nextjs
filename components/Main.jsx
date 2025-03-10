@@ -1,3 +1,4 @@
+'use client'
 import Codeeditor from "./CodeEditor";
 import {
   ResizableHandle,
@@ -6,15 +7,18 @@ import {
 } from "@/components/ui/resizable";
 import InputOutputSection from "./InputOutputSection";
 import LeftSidebarSection from "./LeftSidebarSection";
-import AI from "./AI";
 import AiSection from "./AI/AiSection";
+import { useAppContext } from "@/contexts/AppContext";
 
 function Main() {
+
+  const {isChatOpen} = useAppContext()
+
   return (
     <div
       style={{ height: `calc(100vh - 5rem)` }}
       className="w-full flex"
-    >
+    > 
       <LeftSidebarSection />
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={50}>
@@ -25,9 +29,13 @@ function Main() {
           <InputOutputSection />
         </ResizablePanel>
         <ResizableHandle />
-        <ResizablePanel defaultSize={30}>
+        {
+          isChatOpen && (
+            <ResizablePanel defaultSize={30}>
           <AiSection />
         </ResizablePanel>
+          )
+        }
       </ResizablePanelGroup>
     </div>
   );

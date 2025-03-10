@@ -10,6 +10,7 @@ export const useAppContext = () => useContext(AppContext);
 
 export const AppContextProvider = ({ children }) => {
 
+    const [isChatOpen, setIsChatOpen] = useState(true);
     const [language, setLanguage] = useState('cpp');
     const [userCode, setUserCode] = useState(LANGUAGES[language].helloWorld);
     const [extension, setExtension] = useState(LANGUAGES[language].extension);
@@ -38,7 +39,7 @@ export const AppContextProvider = ({ children }) => {
     }
 
     const handleCtrlS = async (event) => {
-        if (event.ctrlKey && event.key === 's') {
+        if (event.ctrlKey && event.key.toLowerCase() === 's') {
             event.preventDefault();
             await handleExecuteCode()
         }
@@ -48,6 +49,13 @@ export const AppContextProvider = ({ children }) => {
         if (event.ctrlKey && event.key === 'Enter') {
             event.preventDefault();
             await handleExecuteCode()
+        }
+    };
+    
+    const handleCtrlI = async (event) => {
+        if (event.ctrlKey && event.key.toLowerCase() === 'i') {
+            event.preventDefault();
+            setIsChatOpen(prev=>!prev)
         }
     };
 
@@ -67,13 +75,15 @@ export const AppContextProvider = ({ children }) => {
     useEffect(() => {
         document.addEventListener('keydown', handleCtrlS);
         document.addEventListener('keydown', handleCtrlEnter);
-
+        document.addEventListener('keydown', handleCtrlI);
+        
         // Cleanup: remove event listeners when component unmounts
         return () => {
             document.removeEventListener('keydown', handleCtrlS);
             document.removeEventListener('keydown', handleCtrlEnter);
+            document.removeEventListener('keydown', handleCtrlI);
         };
-    }, [handleExecuteCode]);
+    }, [handleExecuteCode,setIsChatOpen]);
 
     const values = {
         language,
@@ -92,7 +102,8 @@ export const AppContextProvider = ({ children }) => {
         setLanguageVersion,
         handleExecuteCode,
         loading,
-        handleCodeChange
+        handleCodeChange,
+        isChatOpen, setIsChatOpen
     }
 
     return (

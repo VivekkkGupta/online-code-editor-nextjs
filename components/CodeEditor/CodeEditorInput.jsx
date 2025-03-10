@@ -6,8 +6,6 @@ import { useAppContext } from '@/contexts/AppContext';
 function CodeEditorInput() {
     const { language, editorTheme, userCode, handleCodeChange } = useAppContext()
 
-
-
     return (
         <div className='w-full h-[calc(100vh-9rem)] flex items-center justify-center'>
             <Editor

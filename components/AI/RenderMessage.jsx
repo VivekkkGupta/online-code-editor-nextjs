@@ -25,25 +25,25 @@ function RenderMessage({ message, index, copyStatus, setCopyStatus }) {
       // parts[2]: code
       // parts[3]: text after code block (if any)
       return (
-        <div className="flex flex-col space-y-2 text-xs">
+        <div className="flex flex-col space-y-2 text-xs w-full max-w-[600px]">
           {/* Text before code block */}
           {parts[0] && (
-            <div className="flex justify-start">
-              <div className="max-w-[80%] rounded-lg px-3 py-2 bg-muted text-foreground">
+            <div className="flex justify-start w-full">
+              <div className="max-w-[80%] rounded-lg px-3 py-2 bg-muted text-foreground break-words whitespace-pre-wrap">
                 {parts[0]}
               </div>
             </div>
           )}
 
           {/* Code block */}
-          <div className="bg-muted rounded-lg p-2">
+          <div className="bg-muted rounded-lg p-2 w-full">
             <div className="flex justify-between items-center mb-2">
               <span className="text-muted-foreground">
                 {parts[1] || "Language"}
               </span>
               <button
                 onClick={() => handleCopy(parts[2], index)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
               >
                 {copyStatus[index] ? (
                   <Check className="h-3 w-3" />
@@ -52,8 +52,8 @@ function RenderMessage({ message, index, copyStatus, setCopyStatus }) {
                 )}
               </button>
             </div>
-            <pre className="overflow-x-auto p-2 rounded bg-background">
-              <code className="font-mono">{parts[2]}</code>
+            <pre className="overflow-x-auto p-2 rounded bg-background w-full">
+              <code className="font-mono text-wrap">{parts[2]}</code>
             </pre>
           </div>
 
@@ -61,7 +61,9 @@ function RenderMessage({ message, index, copyStatus, setCopyStatus }) {
           {parts[3] && (
             <div className="flex justify-start">
               <div className="max-w-[80%] rounded-lg px-3 py-2 bg-muted text-foreground">
+              <pre className="overflow-x-auto w-full text-wrap">
                 {parts[3]}
+                </pre>
               </div>
             </div>
           )}
