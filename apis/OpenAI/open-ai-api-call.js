@@ -19,6 +19,8 @@ async function generateResponse(prompt) {
                     3. Code optimization
                     4. Code review
                     5. Programming concepts explanation
+                    6. Code Explanation
+                    7. If it has programming language and code in context then give the reponse
 
                     For ANY other topics or requests, respond with:
                     "Sorry, I can only help with coding-related questions. I can generate code, debug your code, optimize and review it."
@@ -41,7 +43,7 @@ async function generateResponse(prompt) {
         },
       ],
       temperature: 0.5, // Lower temperature for more focused coding responses
-      max_tokens: 500, // Increased for longer solutions
+      max_tokens: 499, // Increased for longer solutions
       top_p: 0.9,
       frequency_penalty: 0.2, // Slight penalty to avoid repetitive code patterns
       presence_penalty: 0.1,
