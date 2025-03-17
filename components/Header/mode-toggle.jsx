@@ -14,7 +14,6 @@ const ModeToggle = () => {
     if (!mounted) return null;
 
     const handleThemeChange = () => {
-        console.log("Current theme:", theme);
         setTheme(theme === 'light' ? 'dark' : 'light');
     }
     return (

@@ -32,7 +32,7 @@ function LeftSidebarSection() {
         variant="outline"
         size="icon"
         onClick={() => handleLanguageChange("cpp")}
-        
+
       >
         <SiCplusplus className="text-xl" />
       </Button>

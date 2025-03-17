@@ -12,13 +12,13 @@ import { useAppContext } from "@/contexts/AppContext";
 
 function Main() {
 
-  const {isChatOpen} = useAppContext()
+  const { coderszState } = useAppContext()
 
   return (
     <div
       style={{ height: `calc(100vh - 5rem)` }}
       className="w-full flex"
-    > 
+    >
       <LeftSidebarSection />
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={50}>
@@ -30,10 +30,10 @@ function Main() {
         </ResizablePanel>
         <ResizableHandle />
         {
-          isChatOpen && (
+          coderszState[aiChatOpen] && (
             <ResizablePanel defaultSize={30}>
-          <AiSection />
-        </ResizablePanel>
+              <AiSection />
+            </ResizablePanel>
           )
         }
       </ResizablePanelGroup>

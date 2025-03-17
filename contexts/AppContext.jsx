@@ -9,16 +9,35 @@ const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
 
 export const AppContextProvider = ({ children }) => {
+    const [coderszState, setCoderszState] = useState([
+        {
+            editorTheme: "vs",
+            aiChatOpen: true,
+        }
+    ]);
 
-    const [isChatOpen, setIsChatOpen] = useState(true);
-    const [language, setLanguage] = useState('cpp');
-    const [userCode, setUserCode] = useState(LANGUAGES[language].helloWorld);
-    const [extension, setExtension] = useState(LANGUAGES[language].extension);
-    const [languageVersion, setLanguageVersion] = useState(LANGUAGES[language].version);
-    const [userInput, setUserInput] = useState('');
-    const [output, setOutput] = useState('');
+    const [codeDetailsObj, setCodeDetailsObj] = useState(
+        {
+            cpp: {
+                language: 'cpp',
+                languageVersion: LANGUAGES['cpp'].version,
+                langaugeExtension: LANGUAGES['cpp'].extension,
+                languageCode: LANGUAGES['cpp'].helloWorld,
+                userInput: "",
+                codeOutput: "",
+            }
+        }
+    )
+
+    // const [isChatOpen, setIsChatOpen] = useState(true);
+    // const [language, setLanguage] = useState('cpp');
+    // const [userCode, setUserCode] = useState(LANGUAGES[language].helloWorld);
+    // const [extension, setExtension] = useState(LANGUAGES[language].extension);
+    // const [languageVersion, setLanguageVersion] = useState(LANGUAGES[language].version);
+    // const [userInput, setUserInput] = useState('');
+    // const [output, setOutput] = useState('');
     const [loading, setLoading] = useState(false);
-    const [editorTheme, setEditorTheme] = useState('vs');
+    // const [editorTheme, setEditorTheme] = useState('vs');
 
     const handleCodeChange = (newValue) => {
         setUserCode(newValue);
@@ -51,11 +70,11 @@ export const AppContextProvider = ({ children }) => {
             await handleExecuteCode()
         }
     };
-    
+
     const handleCtrlI = async (event) => {
         if (event.ctrlKey && event.key.toLowerCase() === 'i') {
             event.preventDefault();
-            setIsChatOpen(prev=>!prev)
+            setIsChatOpen(prev => !prev)
         }
     };
 
@@ -76,34 +95,22 @@ export const AppContextProvider = ({ children }) => {
         document.addEventListener('keydown', handleCtrlS);
         document.addEventListener('keydown', handleCtrlEnter);
         document.addEventListener('keydown', handleCtrlI);
-        
+
         // Cleanup: remove event listeners when component unmounts
         return () => {
             document.removeEventListener('keydown', handleCtrlS);
             document.removeEventListener('keydown', handleCtrlEnter);
             document.removeEventListener('keydown', handleCtrlI);
         };
-    }, [handleExecuteCode,setIsChatOpen]);
+    }, [handleExecuteCode, setIsChatOpen]);
 
     const values = {
-        language,
-        setLanguage,
-        userCode,
-        setUserCode,
-        userInput,
-        setUserInput,
-        editorTheme,
-        setEditorTheme,
-        extension,
-        setExtension,
-        output,
-        setOutput,
-        languageVersion,
-        setLanguageVersion,
-        handleExecuteCode,
-        loading,
-        handleCodeChange,
-        isChatOpen, setIsChatOpen
+        handleExecuteCode, handleCodeChange,
+        loading, setLoading,
+        coderszState,
+        setCoderszState,
+        codeDetailsObj,
+        setCodeDetailsObj
     }
 
     return (
