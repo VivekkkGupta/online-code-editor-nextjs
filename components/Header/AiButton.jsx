@@ -6,7 +6,7 @@ import { useAppContext } from '@/contexts/AppContext'
 import { Sparkles } from 'lucide-react'
 
 function AiButton() {
-    const { setCoderszState } = useAppContext()
+    const { setAiChatOpen } = useAppContext()
     return (
         <Button
             className="relative cursor-pointer rounded-full
@@ -17,7 +17,7 @@ function AiButton() {
           before:p-[2px] before:bg-gradient-to-r before:from-purple-500 
           before:to-pink-500"
             onClick={() =>
-                setCoderszState(prev => ({ ...prev, aiChatOpen: !prev[aiChatOpen] }))
+                setAiChatOpen(prev => !prev)
             }
             title="AI Assistant (Ctrl + I)"
         >

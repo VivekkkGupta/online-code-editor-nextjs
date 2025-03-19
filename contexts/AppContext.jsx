@@ -9,85 +9,73 @@ const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
 
 export const AppContextProvider = ({ children }) => {
-    const [coderszState, setCoderszState] = useState([
-        {
-            editorTheme: "vs",
-            aiChatOpen: true,
-        }
-    ]);
-
-    const [codeDetailsObj, setCodeDetailsObj] = useState(
-        {
-            cpp: {
-                language: 'cpp',
-                languageVersion: LANGUAGES['cpp'].version,
-                langaugeExtension: LANGUAGES['cpp'].extension,
-                languageCode: LANGUAGES['cpp'].helloWorld,
-                userInput: "",
-                codeOutput: "",
-            }
-        }
-    )
-
-    // const [isChatOpen, setIsChatOpen] = useState(true);
-    // const [language, setLanguage] = useState('cpp');
-    // const [userCode, setUserCode] = useState(LANGUAGES[language].helloWorld);
-    // const [extension, setExtension] = useState(LANGUAGES[language].extension);
-    // const [languageVersion, setLanguageVersion] = useState(LANGUAGES[language].version);
-    // const [userInput, setUserInput] = useState('');
-    // const [output, setOutput] = useState('');
+    // Separate states for each component
+    const [editorTheme, setEditorTheme] = useState("vs");
+    const [aiChatOpen, setAiChatOpen] = useState(true);
+    const [language, setLanguage] = useState("cpp");
+    const [languageVersion, setLanguageVersion] = useState(LANGUAGES['cpp'].version);
+    const [extension, setExtension] = useState(LANGUAGES['cpp'].extension);
+    const [userCode, setUserCode] = useState(LANGUAGES['cpp'].helloWorld);
+    const [userInput, setUserInput] = useState("");
+    const [output, setOutput] = useState("");
     const [loading, setLoading] = useState(false);
-    // const [editorTheme, setEditorTheme] = useState('vs');
 
     const handleCodeChange = (newValue) => {
         setUserCode(newValue);
     };
 
     const handleExecuteCode = async () => {
-        console.log(userCode)
         try {
-            setLoading(true)
-            setOutput("Loading...")
-            const response = await executeCode(language, userCode, userInput);
+            setLoading(true);
+            setOutput("Loading...");
+
+            const response = await executeCode(
+                language,
+                userCode,
+                userInput
+            );
+
             setOutput(response.data.run.output);
-            setLoading(false)
         } catch (error) {
-            console.log(error)
-            setOutput("Error: " + error)
+            setOutput("Error: " + error);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     const handleCtrlS = async (event) => {
         if (event.ctrlKey && event.key.toLowerCase() === 's') {
             event.preventDefault();
-            await handleExecuteCode()
+            await handleExecuteCode();
         }
     };
 
     const handleCtrlEnter = async (event) => {
         if (event.ctrlKey && event.key === 'Enter') {
             event.preventDefault();
-            await handleExecuteCode()
+            await handleExecuteCode();
         }
     };
 
     const handleCtrlI = async (event) => {
         if (event.ctrlKey && event.key.toLowerCase() === 'i') {
             event.preventDefault();
-            setIsChatOpen(prev => !prev)
+            setAiChatOpen(!aiChatOpen);
         }
     };
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const storedLanguage = localStorage.getItem('selectedLanguage');
-            if (storedLanguage) {
-                setLanguage(storedLanguage);
-                setExtension(LANGUAGES[storedLanguage].extension);
-                setUserCode(LANGUAGES[storedLanguage].helloWorld);
-                setLanguageVersion(LANGUAGES[storedLanguage].version);
-                // console.log( "Language stored: ",storedLanguage, "\nBoilerPlate : ", LANGUAGES[language].helloWorld,"\nExtension : ",LANGUAGES[language].extension)w
-            }
+        const savedTheme = localStorage.getItem("editorTheme");
+        if (savedTheme) {
+            setEditorTheme(savedTheme);
+        }
+
+        const savedLanguage = localStorage.getItem("selectedLanguage");
+        if (savedLanguage) {
+            setLanguage(savedLanguage);
+            setLanguageVersion(LANGUAGES[savedLanguage].version);
+            setExtension(LANGUAGES[savedLanguage].extension);
+            setUserCode(LANGUAGES[savedLanguage].helloWorld);
         }
     }, []);
 
@@ -96,26 +84,50 @@ export const AppContextProvider = ({ children }) => {
         document.addEventListener('keydown', handleCtrlEnter);
         document.addEventListener('keydown', handleCtrlI);
 
-        // Cleanup: remove event listeners when component unmounts
         return () => {
             document.removeEventListener('keydown', handleCtrlS);
             document.removeEventListener('keydown', handleCtrlEnter);
             document.removeEventListener('keydown', handleCtrlI);
         };
-    }, [handleExecuteCode, setIsChatOpen]);
+    }, [handleExecuteCode]);
 
     const values = {
-        handleExecuteCode, handleCodeChange,
-        loading, setLoading,
-        coderszState,
-        setCoderszState,
-        codeDetailsObj,
-        setCodeDetailsObj
-    }
+        // Editor theme states
+        editorTheme,
+        setEditorTheme,
+
+        // AI chat states
+        aiChatOpen,
+        setAiChatOpen,
+
+        // Language states
+        language,
+        setLanguage,
+        languageVersion,
+        setLanguageVersion,
+        extension,
+        setExtension,
+
+        // Code states
+        userCode,
+        setUserCode,
+        userInput,
+        setUserInput,
+        output,
+        setOutput,
+
+        // Loading state
+        loading,
+        setLoading,
+
+        // Handlers
+        handleExecuteCode,
+        handleCodeChange
+    };
 
     return (
         <AppContext.Provider value={values}>
             {children}
         </AppContext.Provider>
-    )
-}
+    );
+};

@@ -10,11 +10,16 @@ import generateResponse from "@/apis/OpenAI/open-ai-api-call";
 import { useAppContext } from "@/contexts/AppContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSession } from "next-auth/react";
-import { signIn } from "next-auth/react"; // Import signIn function
+import { signIn } from "next-auth/react";
 
 function AiSection() {
   const { data: session } = useSession();
-  const { language, userCode, isChatOpen, setIsChatOpen } = useAppContext();
+  const {
+    language,
+    userCode,
+    aiChatOpen,
+    setAiChatOpen
+  } = useAppContext();
 
   // State management
   const [inputText, setInputText] = useState("");
@@ -44,7 +49,6 @@ Programming Language: ${language}
 code: ${codeContext ? `${userCode}` : ""} 
 Input prompt: ${inputText}
       `;
-      //   console.log(finalPrompt);
       const aiResponse = await generateResponse(finalPrompt);
       setMessages((prev) => [...prev, { text: aiResponse, sender: "AI" }]);
     } catch (error) {
@@ -63,7 +67,7 @@ Input prompt: ${inputText}
 
   return (
     <>
-      {isChatOpen && (
+      {aiChatOpen && (
         <div className="flex flex-col h-full border-l relative">
           {/* Header */}
           <div className="px-4 py-3 border-b flex justify-between">
@@ -71,7 +75,7 @@ Input prompt: ${inputText}
             <Button
               variant={"ghost"}
               className={`cursor-pointer`}
-              onClick={() => setIsChatOpen((prev) => !prev)}
+              onClick={() => setAiChatOpen(false)}
             >
               <X />
             </Button>
@@ -165,7 +169,7 @@ Input prompt: ${inputText}
                     ))}
                   </div>
                 </ScrollArea>
-                <div className="absolute inset-0 flex items-center justify-center  bg-opacity-75">
+                <div className="absolute inset-0 flex items-center justify-center bg-opacity-75">
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-4">You need to log in to use the AI chat</p>
                     <Button onClick={() => signIn()} variant="default" className="cursor-pointer" size="lg">

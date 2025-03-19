@@ -11,18 +11,23 @@ function LeftSidebarSection() {
   const {
     language,
     setLanguage,
-    setUserCode,
-    setExtension,
     setLanguageVersion,
+    setExtension,
+    setUserCode,
+    setUserInput,
+    setOutput
   } = useAppContext();
 
-  const handleLanguageChange = (language) => {
-    setLanguage(language);
-    localStorage.setItem("selectedLanguage", language);
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
+    setLanguageVersion(LANGUAGES[newLanguage].version);
+    setExtension(LANGUAGES[newLanguage].extension);
+    setUserCode(LANGUAGES[newLanguage].helloWorld);
+    setUserInput("");
+    setOutput("");
 
-    setExtension(LANGUAGES[language].extension);
-    setUserCode(LANGUAGES[language].helloWorld);
-    setLanguageVersion(LANGUAGES[language].version);
+    // Save to localStorage
+    localStorage.setItem("selectedLanguage", newLanguage);
   };
 
   return (
@@ -32,9 +37,8 @@ function LeftSidebarSection() {
         variant="outline"
         size="icon"
         onClick={() => handleLanguageChange("cpp")}
-
       >
-        <SiCplusplus className="text-xl" />
+        <SiCplusplus className="h-6 w-6" />
       </Button>
       <Button
         className={`${language === "python" ? "bg-white text-black hover:bg-white hover:text-black" : ""} cursor-pointer`}
@@ -42,7 +46,7 @@ function LeftSidebarSection() {
         size="icon"
         onClick={() => handleLanguageChange("python")}
       >
-        <SiPython className="text-xl" />
+        <SiPython className="h-6 w-6" />
       </Button>
       <Button
         className={`${language === "javascript" ? "bg-white text-black hover:bg-white hover:text-black" : ""} cursor-pointer`}
@@ -50,7 +54,7 @@ function LeftSidebarSection() {
         size="icon"
         onClick={() => handleLanguageChange("javascript")}
       >
-        <SiJavascript className="text-xl" />
+        <SiJavascript className="h-6 w-6" />
       </Button>
       <Button
         className={`${language === "java" ? "bg-white text-black hover:bg-white hover:text-black" : ""} cursor-pointer`}
@@ -58,9 +62,8 @@ function LeftSidebarSection() {
         size="icon"
         onClick={() => handleLanguageChange("java")}
       >
-        <LiaJava className="text-2xl" />
+        <LiaJava className="h-6 w-6" />
       </Button>
-
     </div>
   );
 }

@@ -15,56 +15,38 @@ import { LANGUAGES } from '@/lib/constants/constants';
 
 function SelectLanguage() {
     const {
-        codeDetailsObj,
-        setCodeDetailsObj
+        language,
+        setLanguage,
+        setLanguageVersion,
+        setExtension,
+        setUserCode,
+        setUserInput,
+        setOutput
     } = useAppContext();
 
-    const handleLanguageChange = (language) => {
-        const tempObj = {
-            [language]: {
-                language: language,
-                languageVersion: LANGUAGES[language].version,
-                langaugeExtension: LANGUAGES[language].extension,
-                languageCode: LANGUAGES[language].helloWorld,
-                userInput: "",
-                codeOutput: "",
-            }
-        }
-
-        setCodeDetailsObj(prev => ({
-            ...prev,
-            ...tempObj
-        }));
+    const handleLanguageChange = (newLanguage) => {
+        setLanguage(newLanguage);
+        setLanguageVersion(LANGUAGES[newLanguage].version);
+        setExtension(LANGUAGES[newLanguage].extension);
+        setUserCode(LANGUAGES[newLanguage].helloWorld);
+        setUserInput("");
+        setOutput("");
 
         // Save to localStorage
-        localStorage.setItem("codersz-CodeDetails", JSON.stringify({
-            ...codeDetailsObj,
-            ...tempObj
-        }));
+        localStorage.setItem("selectedLanguage", newLanguage);
     };
 
-    // Get current language from codeDetailsObj
-    const currentLanguage = Object.keys(codeDetailsObj)[0] || 'cpp';
-
     useEffect(() => {
-        const savedDetails = localStorage.getItem("codersz-CodeDetails");
-        if (savedDetails) {
-            try {
-                const parsedDetails = JSON.parse(savedDetails);
-                setCodeDetailsObj(parsedDetails);
-            } catch (error) {
-                console.error("Error parsing saved code details:", error);
-                // Set default if parsing fails
-                handleLanguageChange('cpp');
-            }
+        const savedLanguage = localStorage.getItem("selectedLanguage");
+        if (savedLanguage) {
+            handleLanguageChange(savedLanguage);
         } else {
-            // Set default if no saved details
             handleLanguageChange('cpp');
         }
     }, []);
 
     return (
-        <Select value={currentLanguage} onValueChange={handleLanguageChange}>
+        <Select value={language} onValueChange={handleLanguageChange}>
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Select a Language" />
             </SelectTrigger>

@@ -12,7 +12,7 @@ import { useAppContext } from "@/contexts/AppContext";
 
 function Main() {
 
-  const { coderszState } = useAppContext()
+  const { aiChatOpen } = useAppContext()
 
   return (
     <div
@@ -30,7 +30,7 @@ function Main() {
         </ResizablePanel>
         <ResizableHandle />
         {
-          coderszState[aiChatOpen] && (
+          aiChatOpen && (
             <ResizablePanel defaultSize={30}>
               <AiSection />
             </ResizablePanel>
