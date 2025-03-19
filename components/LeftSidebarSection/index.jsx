@@ -10,25 +10,10 @@ import { Button } from "@/components/ui/button";
 function LeftSidebarSection() {
   const {
     language,
-    setLanguage,
-    setLanguageVersion,
-    setExtension,
-    setUserCode,
-    setUserInput,
-    setOutput
+    handleLanguageChange
   } = useAppContext();
 
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-    setLanguageVersion(LANGUAGES[newLanguage].version);
-    setExtension(LANGUAGES[newLanguage].extension);
-    setUserCode(LANGUAGES[newLanguage].helloWorld);
-    setUserInput("");
-    setOutput("");
 
-    // Save to localStorage
-    localStorage.setItem("selectedLanguage", newLanguage);
-  };
 
   return (
     <div className="w-[5vw] flex flex-col items-center gap-4 py-10 border-r">

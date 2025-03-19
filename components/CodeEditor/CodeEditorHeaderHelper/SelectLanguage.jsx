@@ -11,39 +11,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { LANGUAGES } from '@/lib/constants/constants';
 
 function SelectLanguage() {
     const {
         language,
-        setLanguage,
-        setLanguageVersion,
-        setExtension,
-        setUserCode,
-        setUserInput,
-        setOutput
+        handleLanguageChange
     } = useAppContext();
 
-    const handleLanguageChange = (newLanguage) => {
-        setLanguage(newLanguage);
-        setLanguageVersion(LANGUAGES[newLanguage].version);
-        setExtension(LANGUAGES[newLanguage].extension);
-        setUserCode(LANGUAGES[newLanguage].helloWorld);
-        setUserInput("");
-        setOutput("");
-
-        // Save to localStorage
-        localStorage.setItem("selectedLanguage", newLanguage);
-    };
-
-    useEffect(() => {
-        const savedLanguage = localStorage.getItem("selectedLanguage");
-        if (savedLanguage) {
-            handleLanguageChange(savedLanguage);
-        } else {
-            handleLanguageChange('cpp');
-        }
-    }, []);
 
     return (
         <Select value={language} onValueChange={handleLanguageChange}>

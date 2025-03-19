@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Play } from "lucide-react";
 import EditorThemeChoice from "./CodeEditorHeaderHelper/EditorThemeChoice";
 import SelectLanguage from "./CodeEditorHeaderHelper/SelectLanguage";
+import DownloadCode from "./CodeEditorHeaderHelper/DownloadCode";
 
 function CodeEditorHeader() {
   const { handleExecuteCode, loading } = useAppContext();
@@ -11,7 +12,10 @@ function CodeEditorHeader() {
   return (
     <div className="flex justify-between h-[4rem] w-full border-b items-center px-10">
       {/* <div className="border-r flex px-5 items-center">main{extension}</div> */}
-      <SelectLanguage />
+      <div className="flex items-center gap-2">
+        <SelectLanguage />
+        <DownloadCode />
+      </div>
       <div className="flex items-center py-2  justify-end w-full gap-2">
         <EditorThemeChoice />
         <Button

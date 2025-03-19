@@ -11,6 +11,7 @@ function InputSection() {
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
+        localStorage.setItem("codeinput", JSON.stringify(e.target.value))
     };
 
     return (

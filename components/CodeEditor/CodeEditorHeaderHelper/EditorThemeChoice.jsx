@@ -18,15 +18,6 @@ function EditorThemeChoice() {
     localStorage.setItem("editorTheme", value);
   };
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("editorTheme");
-    if (savedTheme) {
-      setEditorTheme(savedTheme);
-    } else {
-      setEditorTheme("vs");
-    }
-  }, [setEditorTheme]);
-
   return (
     <Select value={editorTheme} onValueChange={handleThemeChange}>
       <SelectTrigger className="w-[180px]">
