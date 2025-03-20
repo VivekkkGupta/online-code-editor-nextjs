@@ -144,7 +144,7 @@ export const AppContextProvider = ({ children }) => {
             link.href = url;
 
             // Set the filename with proper extension
-            const fileName = `code.${extension}`;
+            const fileName = `code${extension}`;
             link.download = fileName;
 
             // Append to body, click, and remove

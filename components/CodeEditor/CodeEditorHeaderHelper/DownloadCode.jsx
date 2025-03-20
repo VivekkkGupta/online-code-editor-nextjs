@@ -6,7 +6,7 @@ import React from 'react'
 function DownloadCode() {
     const { handleDownloadCode } = useAppContext()
     return (
-        <Button variant={"outline"} className={`cursor-pointer`}>
+        <Button variant={"outline"} className={`cursor-pointer`} onClick={handleDownloadCode}>
             <Download />
         </Button>
     )
