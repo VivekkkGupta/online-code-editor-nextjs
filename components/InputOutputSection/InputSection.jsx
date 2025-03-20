@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from '../ui/button'
@@ -5,8 +7,12 @@ import { Label } from '../ui/label'
 import { useAppContext } from '@/contexts/AppContext'
 
 function InputSection() {
+    const { userInput, setUserInput } = useAppContext();
 
-    const { userInput, setUserInput } = useAppContext()
+    const handleInputChange = (e) => {
+        setUserInput(e.target.value);
+        localStorage.setItem("codeinput", JSON.stringify(e.target.value))
+    };
 
     return (
         <div className="h-full w-full flex flex-col gap-1 pt-2">
@@ -15,7 +21,7 @@ function InputSection() {
                 {/* <Button
                     variant={"ghost"}
                     className={`cursor-pointer`}
-                    onClick={() => setUserInput(" ")}
+                    onClick={() => setUserInput("")}
                 >
                     Clear Input
                 </Button> */}
@@ -23,7 +29,7 @@ function InputSection() {
             <Textarea
                 id="inputmessage"
                 className={`h-full`}
-                onChange={(e) => setUserInput(e.target.value)}
+                onChange={handleInputChange}
                 value={userInput}
             />
         </div>

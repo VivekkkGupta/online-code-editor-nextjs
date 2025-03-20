@@ -20,17 +20,17 @@ export default function UserLogin() {
     <>
       {session ? (
         <>
-          {console.log(session)}
+          {/* {console.log(session)} */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Avatar className="cursor-pointer hover:shadow-md transition-shadow">
-              
+
                 <AvatarImage
                   src={session?.user?.image}
                   alt={session?.user?.name}
                 />
                 <AvatarFallback>{session?.user?.name}</AvatarFallback>
-              
+
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
@@ -42,8 +42,8 @@ export default function UserLogin() {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem 
-                onClick={() => signOut()} 
+              <DropdownMenuItem
+                onClick={() => signOut()}
                 className="cursor-pointer hover:shadow-sm"
               >
                 <LogOut className="mr-2 h-4 w-4" />

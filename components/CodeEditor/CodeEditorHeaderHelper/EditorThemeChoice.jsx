@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../../contexts/AppContext";
 import {
   Select,
   SelectContent,
@@ -17,15 +17,6 @@ function EditorThemeChoice() {
     setEditorTheme(value);
     localStorage.setItem("editorTheme", value);
   };
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("editorTheme");
-    if (savedTheme) {
-      setEditorTheme(savedTheme);
-    } else {
-      setEditorTheme("vs");
-    }
-  }, [setEditorTheme]);
 
   return (
     <Select value={editorTheme} onValueChange={handleThemeChange}>

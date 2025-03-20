@@ -2,6 +2,8 @@ import React from "react";
 import { APP_NAME } from "@/lib/constants/constants";
 import ModeToggle from "./mode-toggle";
 import UserLogin from "./UserLogin";
+import ShareButton from "./ShareButton"
+import AiButton from "./AiButton";
 
 function Header() {
   return (
@@ -13,6 +15,8 @@ function Header() {
           </h1>
         </div>
         <div className="flex items-center gap-5">
+          <AiButton />
+          <ShareButton />
           <ModeToggle />
           <UserLogin />
         </div>

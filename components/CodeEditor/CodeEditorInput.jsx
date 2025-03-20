@@ -1,13 +1,18 @@
 "use client";
 
 import Editor from '@monaco-editor/react';
-import { useAppContext } from '@/contexts/AppContext';
+import { useAppContext } from "@/contexts/AppContext";
 
 function CodeEditorInput() {
-    const { language, editorTheme, userCode, handleCodeChange } = useAppContext()
+    const {
+        editorTheme,
+        language,
+        userCode,
+        handleCodeChange
+    } = useAppContext();
 
     return (
-        <div className='w-full h-[calc(100vh-9rem)] flex items-center justify-center'>
+        <div className="w-full h-[calc(100vh-9rem)] flex items-center justify-center">
             <Editor
                 height="100%"
                 theme={editorTheme}
@@ -16,7 +21,7 @@ function CodeEditorInput() {
                 onChange={handleCodeChange}
             />
         </div>
-    )
+    );
 }
 
-export default CodeEditorInput
+export default CodeEditorInput;
